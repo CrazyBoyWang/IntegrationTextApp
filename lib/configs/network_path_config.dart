@@ -5,6 +5,7 @@ class NetworkConfig {
 
   static String get AUTO_URL => ApiConfig.AUTO_URL;
 
+
   // static String get ROOMBOX_URL => ApiConfig.ROOMBOX_URL;
   // static String get AUTH_KEY => ApiConfig.AUTH_KEY;
   // static String get UPLOAD_FILE_URL => ApiConfig.UPLOAD_FILE_URL;
@@ -23,5 +24,9 @@ class NetworkConfig {
 
     //添加课时
     'AddLesson': HOST_URL + "/bms/admin-api/lesson/v1/insert",
+
+    'IssureLesson': HOST_URL + "/bms/admin-api/lesson/v1/update/state",
+
+    'GetLessonId': AUTO_URL + "/api/integration/queryid",
   };
 }

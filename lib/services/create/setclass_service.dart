@@ -12,11 +12,34 @@ class CreateClass extends BaseApiProvider {
   }
 
 
+
   Future<BaseResp> AddLesson(Map<String, dynamic> params) async {
     print(params);
     //带token传参
-    final response = await post(NetworkConfig.SetClass['AddLesson'],params,{"token":Parameter.token});
+    final response = await post(NetworkConfig.SetClass['AddLesson'],params,{"token":SetClassParameter.token});
 
     return super.verifyMiddleWare(response);
   }
+
+
+
+  Future<BaseResp> IssureLesson(Map<String, dynamic> params) async {
+    print(params);
+    //带token传参
+    final response = await post(NetworkConfig.SetClass['IssureLesson'], params, {"token": SetClassParameter.token});
+
+    return super.verifyMiddleWare(response);
+  }
+
+
+    Future<BaseResp> getLessonId(Map<String, dynamic> params) async {
+      print(params);
+
+     final response = await get(NetworkConfig.SetClass['GetLessonId'],params,{"requestId": 1});
+
+      return super.verifyMiddleWare(response);
+
+
+
+    }
 }

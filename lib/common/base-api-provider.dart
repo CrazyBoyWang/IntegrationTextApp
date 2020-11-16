@@ -209,7 +209,7 @@ class ResponseCode {
 
 /// 网络时长配置
 class TimeConfig {
-  static final int connectTimeout = 5000;
+  static final int connectTimeout = 10000;
   static final int receiveTimeout = 30000;
 }
 

@@ -1,6 +1,6 @@
 class ApiConfig {
   static String HOST_URL = "https://oapi.t.blingabc.com";
-  static String AUTO_URL = "https://lapi.t.blingabc.com";
+  static String AUTO_URL = "https://postman.blingabc.com";
   static String ROOMBOX_URL;
   static String UPLOAD_FILE_URL;
   // app网页部分域名
