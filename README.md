@@ -1,6 +1,6 @@
 # integrationTextApp
 
-A new Flutter application.
+集成创建流程代码到App
 
 ## Getting Started
 
