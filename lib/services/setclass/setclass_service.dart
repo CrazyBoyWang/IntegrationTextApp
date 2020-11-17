@@ -1,6 +1,7 @@
 
 import 'package:integrationTextApp/common/base-api-provider.dart';
-import 'package:integrationTextApp/common/create/proptities.dart';
+import 'package:integrationTextApp/common/setclass/proptities.dart';
+import 'package:integrationTextApp/common/setclass/proptities.dart';
 import 'package:integrationTextApp/configs/network_path_config.dart';
 import 'package:integrationTextApp/resource/base_resp.dart';
 

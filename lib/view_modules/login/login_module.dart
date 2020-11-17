@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:integrationTextApp/common/base-api-provider.dart';
-import 'package:integrationTextApp/services/create/setclass_service.dart';
+import 'package:integrationTextApp/services/setclass/setclass_service.dart';
 import 'package:integrationTextApp/services/home/homepage_service.dart';
 
 class LoginVM {

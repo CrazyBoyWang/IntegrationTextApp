@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:integrationTextApp/common/create/proptities.dart';
+import 'package:integrationTextApp/common/setclass/proptities.dart';
 import 'package:integrationTextApp/configs/network_path_config.dart';
 import 'package:integrationTextApp/resource/base_resp.dart';
-import 'package:integrationTextApp/view_modules/create/setclass_module.dart';
+import 'package:integrationTextApp/view_modules/setclass/setclass_module.dart';
 import 'package:toast/toast.dart';
 import 'package:dio/dio.dart';
 

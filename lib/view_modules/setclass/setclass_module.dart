@@ -1,4 +1,4 @@
-import 'package:integrationTextApp/services/create/setclass_service.dart';
+import 'package:integrationTextApp/services/setclass/setclass_service.dart';
 
 class SetClass {
   CreateClass _createClassRequest = CreateClass();
