@@ -19,8 +19,6 @@ class SetClass {
     return _createClassRequest.IssureLesson(data);
   }
 
-  requestGetLessonId(String classLessonName) {
-    Map<String, dynamic> data = {"lessonName": classLessonName};
-    return _createClassRequest.getLessonId(data);
-  }
+
 }
+

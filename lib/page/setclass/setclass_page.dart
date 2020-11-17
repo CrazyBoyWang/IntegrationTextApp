@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:integrationTextApp/common/setclass/proptities.dart';
-import 'package:integrationTextApp/configs/network_path_config.dart';
+import 'package:integrationTextApp/view_modules/datasource/setclass_db_module.dart';
 import 'package:integrationTextApp/resource/base_resp.dart';
 import 'package:integrationTextApp/view_modules/setclass/setclass_module.dart';
 import 'package:toast/toast.dart';
-import 'package:dio/dio.dart';
 
 class SetClassPageRoute extends StatefulWidget {
   @override
@@ -107,7 +106,7 @@ class _SetClassPage extends State<SetClassPageRoute> {
                 child: Text("发布课时"),
                 onPressed: () async {
                   //调用自动化平台接口获取课时id
-                  BaseResp getLessonId = await SetClass().requestGetLessonId(classLessonName.text);
+                  BaseResp getLessonId = await DataSourceRequest().requestGetLessonId(classLessonName.text);
                   print(getLessonId);
 
                   //   int lessionId
@@ -120,7 +119,6 @@ class _SetClassPage extends State<SetClassPageRoute> {
                   // Map userInfO = issureLesson.data["userInfoVO"];
                   // //获取token并存到配置文件中
                   // SetClassParameter.token = userInfO["token"];
-                  print(SetClassParameter.token);
                 },
               ),
             ],

@@ -33,14 +33,4 @@ class CreateClass extends BaseApiProvider {
   }
 
 
-    Future<BaseResp> getLessonId(Map<String, dynamic> params) async {
-      print(params);
-
-     final response = await get(NetworkConfig.SetClass['GetLessonId'],params,{"requestId": 1});
-
-      return super.verifyMiddleWare(response);
-
-
-
-    }
 }
