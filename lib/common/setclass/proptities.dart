@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class SetClassParameter {
   //AR登录账号密码
   static String arUserName = "WJ2tod/VMtdwffjX+ykjPA==";

@@ -25,8 +25,11 @@ class NetworkConfig {
     //添加课时
     'AddLesson': HOST_URL + "/bms/admin-api/lesson/v1/insert",
 
-    'IssureLesson': HOST_URL + "/bms/admin-api/lesson/v1/update/state",
+    'IssureLesson': HOST_URL + "/bms/admin-api/course/v1/insert",
 
+    //数据库请求部分
     'GetLessonId': AUTO_URL + "/api/integration/queryid",
+    'GetCourseNameType': AUTO_URL + "/api/integration/courseNameType",
+
   };
 }

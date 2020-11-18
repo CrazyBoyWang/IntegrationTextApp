@@ -33,4 +33,14 @@ class CreateClass extends BaseApiProvider {
   }
 
 
+
+  Future<BaseResp> SetUpCourses(Map<String, dynamic> params) async {
+    print(params);
+    //带token传参
+    final response = await post(NetworkConfig.SetClass['IssureLesson'], params);
+
+    return super.verifyMiddleWare(response);
+  }
+
+
 }

@@ -34,7 +34,10 @@ class _ScaffoldRouteState extends State<SheetPageRoute> {
       body: Center(
         //创建Class信息
         child: SetClassPageRoute(),
+
       ),
+
+
       //App Name界面按钮
 
       // drawer: new Drawer(
