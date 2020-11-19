@@ -44,4 +44,49 @@ class SetClass {
     };
     return _createClassRequest.SetUpCourses(data);
   }
+
+  //发布课程
+  requestIssureCourses(int addCoursesId, String classCourseName) {
+    Map<String, dynamic> data = {
+      "id": addCoursesId,
+      "courseName": classCourseName, //courseName
+      "year": DateTime.now().year,
+      "state": 20,
+    };
+    return _createClassRequest.IssureCourses(data);
+  }
+
+//新增模板
+  requestNewMould(int lessonId,int addCoursesId, String className) {
+    Map<String, dynamic> data = {
+      "channelGrade": 3,
+      "courseChannelCode": 60,
+      "syncStatus": 0,
+      "sendMaterial": "0",
+      "courseId": lessonId,//lessonid
+      "templateTimes": [{
+        "openClassNum": 1
+      }],
+      "schoolTimeStatus": 0,
+      "templateLessonList": [{
+        "lessonId": addCoursesId,//course_id
+        "name": className,//课时名称
+        "price": "0",
+        "showPrice": "0",
+        "contractPrice": "0",
+        "teacherRole": "1"
+      }],
+      "liveContain": "10",
+      "commentStatus": "0",
+      "freeLesson": "1",
+      "entryClassTimeList":
+      {
+        "entryDate": "",
+        "entryHour": "",
+        "entryMinute": ""
+      }
+    };
+    return _createClassRequest.NewMould(data);
+  }
+
 }

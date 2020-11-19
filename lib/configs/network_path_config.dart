@@ -25,11 +25,29 @@ class NetworkConfig {
     //添加课时
     'AddLesson': HOST_URL + "/bms/admin-api/lesson/v1/insert",
 
-    'IssureLesson': HOST_URL + "/bms/admin-api/course/v1/insert",
+  //  发布课时
+    'IssureLesson': HOST_URL + "/bms/admin-api/lesson/v1/update/state",
+//组建课程
+    'SetUpCourses': HOST_URL + "/bms/admin-api/course/v1/insert",
+
+  //发布课程
+    'IssureCourses': HOST_URL + "/bms/admin-api/course/v1/update",
+
+    //新增模板
+    'NewMould': HOST_URL + "/bms/admin-api/template/v1/insert",
+
+
+
+
+
+
+
 
     //数据库请求部分
     'GetLessonId': AUTO_URL + "/api/integration/queryid",
     'GetCourseNameType': AUTO_URL + "/api/integration/courseNameType",
+
+
 
   };
 }

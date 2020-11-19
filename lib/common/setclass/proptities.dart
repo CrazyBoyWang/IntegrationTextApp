@@ -8,4 +8,7 @@ class SetClassParameter {
   //存储课时id
   static int lessonId ;
 
+  //组建课程id
+  static int coursesId;
+
 }
