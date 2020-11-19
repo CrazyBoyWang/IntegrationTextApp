@@ -5,11 +5,23 @@ class DataSourceRequest {
 
   requestGetLessonId(String classLessonName) {
     Map<String, dynamic> data = {"lessonName": classLessonName};
-    return _createClassDB.getLessonId(data);
+    return _createClassDB.GetLessonId(data);
   }
 
   requestGetCourseNameType() {
     Map<String, dynamic> data = {};
-    return _createClassDB.getGetCourseNameType(data);
+    return _createClassDB.GetCourseNameType(data);
   }
+
+
+  requestGetCourseIds(String classCourseName) {
+    Map<String, dynamic> data = {"courseName":classCourseName};
+
+    return _createClassDB.GetCourseIds(data);
+  }
+
+
+
+
+
 }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:integrationTextApp/common/base-api-provider.dart';
 import 'package:integrationTextApp/common/setclass/proptities.dart';
 import 'package:integrationTextApp/view_modules/datasource/setclass_db_module.dart';
 import 'package:integrationTextApp/resource/base_resp.dart';
@@ -197,16 +198,16 @@ class _SetClassPage extends State<SetClassPageRoute> {
                   // print(list.first['id']);
                   SetClassParameter.lessonId = getLessonId.data["id"];
                   //   int lessionId
-                  BaseResp issureLesson = await SetClass().requestIssureLesson(SetClassParameter.lessonId);
-                  print(issureLesson);
+                  BaseResp issueLesson = await SetClass().requestIssueLesson(SetClassParameter.lessonId);
+                  print(issueLesson);
                   //判断登录是否成功并给出结论
-                  if (issureLesson.code == 10000 && getLessonId.data["id"] != null) {
+                  if (issueLesson.code == 10000 && getLessonId.data["id"] != null) {
                     Toast.show("发布成功，请继续操作", context, duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
                   } else {
                     Toast.show("系统异常", context, duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
                   }
                   //        print(arLoginResult.data);
-                  // Map userInfO = issureLesson.data["userInfoVO"];
+                  // Map userInfO = issueLesson.data["userInfoVO"];
                   // //获取token并存到配置文件中
                   // SetClassParameter.token = userInfO["token"];
                 },
@@ -220,18 +221,21 @@ class _SetClassPage extends State<SetClassPageRoute> {
               RaisedButton(
                   child: Text("组建课程"),
                   onPressed: () async {
+                    courseName.unfocus();
                     if (classCourseName.text != "" && classLessonName.text != "") {
+
                       BaseResp courseNameType = await DataSourceRequest().requestGetCourseNameType();
                       a = courseNameType.data;
+
                       showModalBottomSheet(
                           context: context,
                           builder: (context) {
                             return Container(
-                              height: 1000,
+                              height: 500,
                               child: ListView(
                                 children: a.map((e) {
                                   return ListTile(
-                                    leading: Icon(Icons.settings),
+                                    leading: Icon(Icons.api_rounded),
                                     title: Text(e["name"]),
                                     onTap: () async {
                                       courseName.unfocus();
@@ -239,8 +243,14 @@ class _SetClassPage extends State<SetClassPageRoute> {
                                       print(e["code"]);
                                       Navigator.pop(context);
                                       lessonName.unfocus();
+
                                       if (resCode != null) {
                                         BaseResp addCourses = await SetClass().requestSetUpCourses(classCourseName.text, classLessonName.text, SetClassParameter.lessonId, resCode);
+                                        print(addCourses);
+
+
+
+
                                         if (addCourses.code == 10000) {
                                           Toast.show("成功请继续操作", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
                                           SetClassParameter.coursesId = addCourses.data;
@@ -335,10 +345,10 @@ class _SetClassPage extends State<SetClassPageRoute> {
                 child: Text("发布课程"),
                 onPressed: () async {
                   //点击进行发布课程
-                  BaseResp issureCourses = await SetClass().requestIssureCourses(SetClassParameter.coursesId, classCourseName.text);
-                  print(issureCourses);
+                  BaseResp issueCourses = await SetClass().requestIssueCourses(SetClassParameter.coursesId, classCourseName.text);
+                  print(issueCourses);
 
-                  if (issureCourses.code == 10000) {
+                  if (issueCourses.code == 10000) {
                     Toast.show("发布成功，请继续操作", context, duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
                   } else {
                     Toast.show("系统异常", context, duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
@@ -357,12 +367,15 @@ class _SetClassPage extends State<SetClassPageRoute> {
             children: <Widget>[
               RaisedButton(
                   child: Text("新增模板"),
-                  onPressed: () {
+                  onPressed: () async {
                     // ignore: unrelated_type_equality_checks
                     if (SetClassParameter.lessonId != "" && SetClassParameter.coursesId != "" && classLessonName.text != "") {
-                      BaseResp newMould = SetClass().requestNewMould(SetClassParameter.lessonId, SetClassParameter.coursesId, classLessonName.text);
+                      BaseResp newMould = await SetClass().requestNewMould(SetClassParameter.lessonId, SetClassParameter.coursesId, classLessonName.text);
+
                       if (newMould.code == 10000) {
-                        Toast.show("新增模板成功，请继续操作", context, duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
+                        Toast.show("模板成功并发布，请继续操作", context, duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
+                        print(newMould);
+                        SetClassParameter.issueId = newMould.data;
                       } else {
                         Toast.show("请检查操作", context, duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
                       }
@@ -374,9 +387,36 @@ class _SetClassPage extends State<SetClassPageRoute> {
                     } else if (SetClassParameter.coursesId == "") {
                       Toast.show("课程id为空，请组建个课程吧", context, duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
                     } else if (classLessonName.text == "") {
-                      Toast.show("课程id为空，请组建个课程吧", context, duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
+                      Toast.show("没有课时名称？怕不是文本框删除了", context, duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
                     }
                   })
+            ],
+          ),
+
+          //上架班级
+          Row(
+            children: <Widget>[
+              RaisedButton(
+                child: Text("上架班级"),
+                  onPressed: ()async{
+                  //通过自动化平台获取classid和courseid
+                  BaseResp getCourseIds = await DataSourceRequest().requestGetCourseIds(classCourseName.text);
+                  print(getCourseIds);
+                  print(getCourseIds.data["id"]);
+                  SetClassParameter.classId = getCourseIds.data["id"];
+                  SetClassParameter.classCode = getCourseIds.data["class_code"];
+
+
+                  //上架班级
+                  BaseResp groundClass = await SetClass().requestGroundClass(SetClassParameter.classId);
+                  print(groundClass);
+
+
+
+
+
+                  }
+              )
             ],
           ),
         ],

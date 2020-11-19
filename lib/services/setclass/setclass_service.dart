@@ -24,10 +24,10 @@ class CreateClass extends BaseApiProvider {
 
 
 
-  Future<BaseResp> IssureLesson(Map<String, dynamic> params) async {
+  Future<BaseResp> IssueLesson(Map<String, dynamic> params) async {
     print(params);
     //带token传参
-    final response = await post(NetworkConfig.SetClass['IssureLesson'], params, {"token": SetClassParameter.token});
+    final response = await post(NetworkConfig.SetClass['IssueLesson'], params, {"token": SetClassParameter.token});
 
     return super.verifyMiddleWare(response);
   }
@@ -44,10 +44,10 @@ class CreateClass extends BaseApiProvider {
 
 
 
-  Future<BaseResp> IssureCourses(Map<String, dynamic> params) async {
+  Future<BaseResp> IssueCourses(Map<String, dynamic> params) async {
     print(params);
     //带token传参
-    final response = await post(NetworkConfig.SetClass['IssureCourses'], params);
+    final response = await post(NetworkConfig.SetClass['IssueCourses'], params);
 
     return super.verifyMiddleWare(response);
   }
@@ -61,5 +61,27 @@ class CreateClass extends BaseApiProvider {
 
     return super.verifyMiddleWare(response);
   }
+
+
+
+
+  Future<BaseResp> GroundClass(params) async {
+    print(params);
+    //带token传参
+    final response = await post(NetworkConfig.SetClass['GroundClass'], params,{"token": SetClassParameter.token,"contentType": 'multipart/form-data'});
+
+    return super.verifyMiddleWare(response);
+  }
+
+
+
+
+// Future<BaseResp> issueMould(Map<String, dynamic> params) async {
+  //   print(params);
+  //   //带token传参
+  //   final response = await post(NetworkConfig.SetClass['issueMould'], params,{"token": SetClassParameter.token});
+  //
+  //   return super.verifyMiddleWare(response);
+  // }
 
 }

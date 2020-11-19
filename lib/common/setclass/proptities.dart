@@ -11,4 +11,13 @@ class SetClassParameter {
   //组建课程id
   static int coursesId;
 
+  //组建模板id
+  static int issueId;
+
+  //上架班级classId
+  static int classId;
+
+  //上架班级class_code
+  static int classCode;
+
 }

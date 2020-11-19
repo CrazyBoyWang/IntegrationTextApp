@@ -26,15 +26,21 @@ class NetworkConfig {
     'AddLesson': HOST_URL + "/bms/admin-api/lesson/v1/insert",
 
   //  发布课时
-    'IssureLesson': HOST_URL + "/bms/admin-api/lesson/v1/update/state",
+    'IssueLesson': HOST_URL + "/bms/admin-api/lesson/v1/update/state",
 //组建课程
     'SetUpCourses': HOST_URL + "/bms/admin-api/course/v1/insert",
 
   //发布课程
-    'IssureCourses': HOST_URL + "/bms/admin-api/course/v1/update",
+    'IssueCourses': HOST_URL + "/bms/admin-api/course/v1/update",
 
     //新增模板
     'NewMould': HOST_URL + "/bms/admin-api/template/v1/insert",
+
+    //发布模板
+    'issueMould': HOST_URL + "/bms/admin-api/classinfo/v1/batch/release",
+
+    //上架班级
+    'GroundClass': HOST_URL + "/bms/admin-api/classinfo/v1/batch/release?ids=115912",
 
 
 
@@ -46,6 +52,10 @@ class NetworkConfig {
     //数据库请求部分
     'GetLessonId': AUTO_URL + "/api/integration/queryid",
     'GetCourseNameType': AUTO_URL + "/api/integration/courseNameType",
+   // 'GetCourseNameType': HOST_URL + "/bms/admin-api/general/course/v1/list",
+
+
+    'GetCourseIds': AUTO_URL + "/api/integration/classId"
 
 
 
