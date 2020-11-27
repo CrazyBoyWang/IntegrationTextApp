@@ -8,6 +8,8 @@ import 'package:integrationTextApp/resource/base_resp.dart';
 import 'package:integrationTextApp/view_modules/setclass/setclass_module.dart';
 import 'package:toast/toast.dart';
 
+import 'onekeysetclass_page.dart';
+
 class SetClassPageRoute extends StatefulWidget {
   @override
   _SetClassPage createState() => _SetClassPage();
@@ -20,6 +22,7 @@ class _SetClassPage extends State<SetClassPageRoute> {
   FocusNode courseName = new FocusNode();
   int resCode;
   List a;
+  var result;
 
 //   List b = ["name", "asdasds", "code", 123];
 //
@@ -99,6 +102,13 @@ class _SetClassPage extends State<SetClassPageRoute> {
 
   @override
   Widget build(BuildContext context) {
+    OnekeySetClass onekeySetClass = OnekeySetClass();
+    onekeySetClass.callBack = (value) {
+      print(value);
+      setState(() {
+        result = value;
+      });
+    };
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -398,29 +408,34 @@ class _SetClassPage extends State<SetClassPageRoute> {
                     //通过自动化平台获取classid和courseid
                     if (classCourseName.text != "") {
                       BaseResp getCourseIds = await DataSourceRequest().requestGetCourseIds(classCourseName.text);
-                  //     print(getCourseIds);
-                  //     print(getCourseIds.data["id"]);
-                       SetClassParameter.classId = getCourseIds.data["id"];
-                  //     SetClassParameter.classCode = getCourseIds.data["class_code"];
-                      BaseResp groundClass = SetClass().requestGroundClass(SetClassParameter.classId);
+                      //     print(getCourseIds);
+                      //     print(getCourseIds.data["id"]);
+                      SetClassParameter.classId = getCourseIds.data["id"];
+                      //     SetClassParameter.classCode = getCourseIds.data["class_code"];
+                      BaseResp groundClass = await SetClass().requestGroundClass(SetClassParameter.classId);
                       print(groundClass);
                     } else {
                       Toast.show("建课名称不见了？", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
                     }
 
-
                     if (SetClassParameter.token != null && SetClassParameter.classId != null) {
-
-
                       // ignore: unrelated_type_equality_checks
                     } else if (SetClassParameter.classId == "" || SetClassParameter.classId == null) {
                       Toast.show("建课id木有，看看上面操作", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
-                    }else if (SetClassParameter.token == "" || SetClassParameter.token == null) {
+                    } else if (SetClassParameter.token == "" || SetClassParameter.token == null) {
                       Toast.show("没token老铁，去登录吧", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
                     }
                   })
             ],
           ),
+          Row(
+            children: [
+              onekeySetClass,
+              Text(result ?? " "),
+
+            ],
+
+          )
         ],
       ),
     );
