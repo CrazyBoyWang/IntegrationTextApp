@@ -223,7 +223,6 @@ class _SetClassPage extends State<SetClassPageRoute> {
                   onPressed: () async {
                     courseName.unfocus();
                     if (classCourseName.text != "" && classLessonName.text != "") {
-
                       BaseResp courseNameType = await DataSourceRequest().requestGetCourseNameType();
                       a = courseNameType.data;
 
@@ -247,9 +246,6 @@ class _SetClassPage extends State<SetClassPageRoute> {
                                       if (resCode != null) {
                                         BaseResp addCourses = await SetClass().requestSetUpCourses(classCourseName.text, classLessonName.text, SetClassParameter.lessonId, resCode);
                                         print(addCourses);
-
-
-
 
                                         if (addCourses.code == 10000) {
                                           Toast.show("成功请继续操作", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
@@ -397,26 +393,32 @@ class _SetClassPage extends State<SetClassPageRoute> {
           Row(
             children: <Widget>[
               RaisedButton(
-                child: Text("上架班级"),
-                  onPressed: ()async{
-                  //通过自动化平台获取classid和courseid
-                  BaseResp getCourseIds = await DataSourceRequest().requestGetCourseIds(classCourseName.text);
-                  print(getCourseIds);
-                  print(getCourseIds.data["id"]);
-                  SetClassParameter.classId = getCourseIds.data["id"];
-                  SetClassParameter.classCode = getCourseIds.data["class_code"];
+                  child: Text("上架班级"),
+                  onPressed: () async {
+                    //通过自动化平台获取classid和courseid
+                    if (classCourseName.text != "") {
+                      BaseResp getCourseIds = await DataSourceRequest().requestGetCourseIds(classCourseName.text);
+                  //     print(getCourseIds);
+                  //     print(getCourseIds.data["id"]);
+                       SetClassParameter.classId = getCourseIds.data["id"];
+                  //     SetClassParameter.classCode = getCourseIds.data["class_code"];
+                      BaseResp groundClass = SetClass().requestGroundClass(SetClassParameter.classId);
+                      print(groundClass);
+                    } else {
+                      Toast.show("建课名称不见了？", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                    }
 
 
-                  //上架班级
-                  BaseResp groundClass = await SetClass().requestGroundClass(SetClassParameter.classId);
-                  print(groundClass);
+                    if (SetClassParameter.token != null && SetClassParameter.classId != null) {
 
 
-
-
-
-                  }
-              )
+                      // ignore: unrelated_type_equality_checks
+                    } else if (SetClassParameter.classId == "" || SetClassParameter.classId == null) {
+                      Toast.show("建课id木有，看看上面操作", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                    }else if (SetClassParameter.token == "" || SetClassParameter.token == null) {
+                      Toast.show("没token老铁，去登录吧", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                    }
+                  })
             ],
           ),
         ],

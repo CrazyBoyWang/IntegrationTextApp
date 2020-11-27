@@ -1,4 +1,6 @@
 
+
+
 import 'package:dio/dio.dart';
 import 'package:integrationTextApp/services/setclass/setclass_service.dart';
 
@@ -93,11 +95,24 @@ class SetClass {
 
 
   requestGroundClass(int classId){
-    FormData formData = FormData.fromMap({"ids":11111});
+    FormData formData = FormData.fromMap({"ids":classId});
 
   return _createClassRequest.GroundClass(formData);
 
   }
+ //   requestGroundClass(int classId) async {
+ //    ///创建Dio
+ //    Dio dio = new Dio();
+ //    ///发送 FormData:
+ //    FormData formData = FormData.fromMap({"ids":classId});
+ //    String url ="https://oapi.t.blingabc.com/bms/admin-api/classinfo/v1/batch/release";
+ // //   HttpHeaders.requestHeaders.add("token:eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJjb20ueGRmLmJsaW5nIiwiYXVkIjoiY2xpZW50IiwidXNlcmNvZGUiOiJjcm1hZG1pbiIsImV4cCI6MTYwNzA0OTUwOCwiaWF0IjoxNjA2NDQ0NzA4fQ.go4-Uv2QJZyQkVLrwKiFKnDqOFT8n70ejCr7biUZEZITTPZg6GCgT8kAHuo-i8mgSWxl7ETbj2TQmsQ7u9cTSQ");
+ //
+ //    ///发起 post 请求 如这里的注册用户信息
+ //    Response response = await dio.post(url, data: formData);
+ //    print(response.data);
+ //
+ //  }
 
 
 

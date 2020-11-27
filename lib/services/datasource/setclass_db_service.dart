@@ -22,9 +22,10 @@ class CreateClassDB extends BaseApiProvider {
 
 
 
+
   Future<BaseResp> GetCourseIds(Map<String, dynamic> params) async {
     //   print(params);
-    final response = await get(NetworkConfig.SetClass['GetCourseIds'],params, {"requestId": 2});
+    final response = await get(NetworkConfig.SetClass['GetCourseIds'],params, {"requestId": 3});
 
     return super.verifyMiddleWare(response);
   }

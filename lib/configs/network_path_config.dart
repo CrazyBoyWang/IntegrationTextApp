@@ -40,7 +40,7 @@ class NetworkConfig {
     'issueMould': HOST_URL + "/bms/admin-api/classinfo/v1/batch/release",
 
     //上架班级
-    'GroundClass': HOST_URL + "/bms/admin-api/classinfo/v1/batch/release?ids=115912",
+    'GroundClass': HOST_URL + "/bms/admin-api/classinfo/v1/batch/release",
 
 
 

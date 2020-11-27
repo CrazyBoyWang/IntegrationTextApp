@@ -1,4 +1,7 @@
 
+
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:integrationTextApp/common/base-api-provider.dart';
 import 'package:integrationTextApp/common/setclass/proptities.dart';
 import 'package:integrationTextApp/common/setclass/proptities.dart';
@@ -65,11 +68,15 @@ class CreateClass extends BaseApiProvider {
 
 
 
-  Future<BaseResp> GroundClass(params) async {
-    print(params);
-    //带token传参
-    final response = await post(NetworkConfig.SetClass['GroundClass'], params,{"token": SetClassParameter.token,"contentType": 'multipart/form-data'});
+  Future<BaseResp> GroundClass(formData) async {
 
+ //   FormData formData = FormData.fromMap({"ids":classId});
+
+   //  print(formData);
+    //带token传参
+    final response = await post(NetworkConfig.SetClass['GroundClass'],formData,{"token": SetClassParameter.token});
+    //{"token": SetClassParameter.token,"Content-Type":"multipart/form-data"}
+    print(response);
     return super.verifyMiddleWare(response);
   }
 
