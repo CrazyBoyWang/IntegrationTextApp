@@ -56,7 +56,7 @@ class OnekeySetClass extends StatelessWidget {
                 Future.delayed(Duration(milliseconds: 2000), () async {
                   if (newMould.code == 10000) {
                     BaseResp getCourseIds = await DataSourceRequest().requestGetCourseIds(classCourseName);
-                 //   print(getCourseIds);
+                    print(getCourseIds);
                     if (getCourseIds.data != null) {
                       //上架班级
                       BaseResp groundClass = await SetClass().requestGroundClass(getCourseIds.data["id"]);

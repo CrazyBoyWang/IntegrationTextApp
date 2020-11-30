@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:integrationTextApp/common/base-api-provider.dart';
@@ -15,17 +13,13 @@ class CreateClass extends BaseApiProvider {
     return super.verifyMiddleWare(response);
   }
 
-
-
   Future<BaseResp> AddLesson(Map<String, dynamic> params) async {
     print(params);
     //带token传参
-    final response = await post(NetworkConfig.SetClass['AddLesson'],params,{"token":SetClassParameter.token});
+    final response = await post(NetworkConfig.SetClass['AddLesson'], params, {"token": SetClassParameter.token});
 
     return super.verifyMiddleWare(response);
   }
-
-
 
   Future<BaseResp> IssueLesson(Map<String, dynamic> params) async {
     print(params);
@@ -35,8 +29,6 @@ class CreateClass extends BaseApiProvider {
     return super.verifyMiddleWare(response);
   }
 
-
-
   Future<BaseResp> SetUpCourses(Map<String, dynamic> params) async {
     print(params);
     //带token传参
@@ -44,8 +36,6 @@ class CreateClass extends BaseApiProvider {
 
     return super.verifyMiddleWare(response);
   }
-
-
 
   Future<BaseResp> IssueCourses(Map<String, dynamic> params) async {
     print(params);
@@ -55,40 +45,45 @@ class CreateClass extends BaseApiProvider {
     return super.verifyMiddleWare(response);
   }
 
-
-
   Future<BaseResp> NewMould(Map<String, dynamic> params) async {
     print(params);
     //带token传参
-    final response = await post(NetworkConfig.SetClass['NewMould'], params,{"token": SetClassParameter.token});
+    final response = await post(NetworkConfig.SetClass['NewMould'], params, {"token": SetClassParameter.token});
 
     return super.verifyMiddleWare(response);
   }
 
-
-
-
   Future<BaseResp> GroundClass(formData) async {
+    //   FormData formData = FormData.fromMap({"ids":classId});
 
- //   FormData formData = FormData.fromMap({"ids":classId});
-
-   //  print(formData);
+    //  print(formData);
     //带token传参
-    final response = await post(NetworkConfig.SetClass['GroundClass'],formData,{"token": SetClassParameter.token});
+    final response = await post(NetworkConfig.SetClass['GroundClass'], formData, {"token": SetClassParameter.token});
     //{"token": SetClassParameter.token,"Content-Type":"multipart/form-data"}
     print(response);
     return super.verifyMiddleWare(response);
   }
 
+  Future<BaseResp> CreateOrder(params) async {
+    final response = await post(NetworkConfig.SetClass['CreateOrder'], params, {"token": SetClassParameter.token});
+    return super.verifyMiddleWare(response);
+  }
+
+
+
+
+
+
+
 
 
 
 // Future<BaseResp> issueMould(Map<String, dynamic> params) async {
-  //   print(params);
-  //   //带token传参
-  //   final response = await post(NetworkConfig.SetClass['issueMould'], params,{"token": SetClassParameter.token});
-  //
-  //   return super.verifyMiddleWare(response);
-  // }
+//   print(params);
+//   //带token传参
+//   final response = await post(NetworkConfig.SetClass['issueMould'], params,{"token": SetClassParameter.token});
+//
+//   return super.verifyMiddleWare(response);
+// }
 
 }

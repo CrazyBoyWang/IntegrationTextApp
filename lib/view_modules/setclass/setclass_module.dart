@@ -1,6 +1,3 @@
-
-
-
 import 'package:dio/dio.dart';
 import 'package:integrationTextApp/services/setclass/setclass_service.dart';
 
@@ -61,69 +58,88 @@ class SetClass {
   }
 
 //新增模板
-  requestNewMould(int lessonId,int addCoursesId, String className) {
+  requestNewMould(int lessonId, int addCoursesId, String className) {
     Map<String, dynamic> data = {
       "channelGrade": 3,
       "courseChannelCode": 60,
       "syncStatus": 0,
       "sendMaterial": "0",
-      "courseId": addCoursesId,//lessonid
-      "templateTimes": [{
-        "openClassNum": 1
-      }],
+      "courseId": addCoursesId, //lessonid
+      "templateTimes": [
+        {"openClassNum": 1}
+      ],
       "schoolTimeStatus": 0,
-      "templateLessonList": [{
-        "lessonId": lessonId,//course_id
-        "name": className,//课时名称
-        "price": "0",
-        "showPrice": "0",
-        "contractPrice": "0",
-        "teacherRole": "1"
-      }],
+      "templateLessonList": [
+        {
+          "lessonId": lessonId, //course_id
+          "name": className, //课时名称
+          "price": "0",
+          "showPrice": "0",
+          "contractPrice": "0",
+          "teacherRole": "1"
+        }
+      ],
       "liveContain": "10",
       "commentStatus": "0",
       "freeLesson": "1",
-      "entryClassTimeList":
-      {
-        "entryDate": "",
-        "entryHour": "",
-        "entryMinute": ""
-      }
+      "entryClassTimeList": {"entryDate": "", "entryHour": "", "entryMinute": ""}
     };
     return _createClassRequest.NewMould(data);
   }
 
+  requestGroundClass(int classId) {
+    FormData formData = FormData.fromMap({"ids": classId});
 
-  requestGroundClass(int classId){
-    FormData formData = FormData.fromMap({"ids":classId});
-
-  return _createClassRequest.GroundClass(formData);
-
+    return _createClassRequest.GroundClass(formData);
   }
- //   requestGroundClass(int classId) async {
- //    ///创建Dio
- //    Dio dio = new Dio();
- //    ///发送 FormData:
- //    FormData formData = FormData.fromMap({"ids":classId});
- //    String url ="https://oapi.t.blingabc.com/bms/admin-api/classinfo/v1/batch/release";
- // //   HttpHeaders.requestHeaders.add("token:eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJjb20ueGRmLmJsaW5nIiwiYXVkIjoiY2xpZW50IiwidXNlcmNvZGUiOiJjcm1hZG1pbiIsImV4cCI6MTYwNzA0OTUwOCwiaWF0IjoxNjA2NDQ0NzA4fQ.go4-Uv2QJZyQkVLrwKiFKnDqOFT8n70ejCr7biUZEZITTPZg6GCgT8kAHuo-i8mgSWxl7ETbj2TQmsQ7u9cTSQ");
- //
- //    ///发起 post 请求 如这里的注册用户信息
- //    Response response = await dio.post(url, data: formData);
- //    print(response.data);
- //
- //  }
 
+  //创建订单
+  requestCreateOrder(int classId, String classCode) {
+    Map<String, dynamic> data = {
+      "orderChannel": "11",
+      "classList": [
+        {
+          "id": classId, // queryClassIdService--id
+          "classCode": classCode //queryClassIdService--classcode
+        }
+      ],
+      "createId": "20",
+      "stuNum": "602089071",
+      "userCode": "crmadmin",
+      "discountId": "",
+      "useCouponCode": [],
+      "sendCouponCodes": [],
+      "courseFavorableState": "1",
+      "remark": "",
+      "isFreePayment": "0",
+      "orderTotalPrice": "0",
+      "orderMaterialsPrice": "0",
+      "checkFlage": "1",
+      "couponList": []
+    };
+    return _createClassRequest.CreateOrder(data);
+  }
 
+//   requestGroundClass(int classId) async {
+//    ///创建Dio
+//    Dio dio = new Dio();
+//    ///发送 FormData:
+//    FormData formData = FormData.fromMap({"ids":classId});
+//    String url ="https://oapi.t.blingabc.com/bms/admin-api/classinfo/v1/batch/release";
+// //   HttpHeaders.requestHeaders.add("token:eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJjb20ueGRmLmJsaW5nIiwiYXVkIjoiY2xpZW50IiwidXNlcmNvZGUiOiJjcm1hZG1pbiIsImV4cCI6MTYwNzA0OTUwOCwiaWF0IjoxNjA2NDQ0NzA4fQ.go4-Uv2QJZyQkVLrwKiFKnDqOFT8n70ejCr7biUZEZITTPZg6GCgT8kAHuo-i8mgSWxl7ETbj2TQmsQ7u9cTSQ");
+//
+//    ///发起 post 请求 如这里的注册用户信息
+//    Response response = await dio.post(url, data: formData);
+//    print(response.data);
+//
+//  }
 
-
-  // //发布模板
-  // requestIssueMould(int issueMould){
-  //   Map<String,dynamic> data={
-  //     "ids": issueMould
-  //   };
-  //   return _createClassRequest.issueMould(data);
-  // }
-
+// //发布模板
+// requestIssueMould(int issueMould){
+//   Map<String,dynamic> data={
+//     "ids": issueMould
+//   };
+//   return _createClassRequest.issueMould(data);
+// }
 
 }

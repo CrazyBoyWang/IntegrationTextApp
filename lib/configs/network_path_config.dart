@@ -42,6 +42,8 @@ class NetworkConfig {
     //上架班级
     'GroundClass': HOST_URL + "/bms/admin-api/classinfo/v1/batch/release",
 
+    //创建订单
+    'CreateOrder': HOST_URL + "/bms/user-api/order/v1/create",
 
 
 

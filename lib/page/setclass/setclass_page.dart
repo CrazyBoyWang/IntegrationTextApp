@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:integrationTextApp/common/base-api-provider.dart';
@@ -23,6 +24,7 @@ class _SetClassPage extends State<SetClassPageRoute> {
   int resCode;
   List classList;
   var result;
+  var createOrderId;
 
 //   List b = ["name", "asdasds", "code", 123];
 //
@@ -408,11 +410,15 @@ class _SetClassPage extends State<SetClassPageRoute> {
                     //通过自动化平台获取classid和courseid
                     if (classCourseName.text != "") {
                       BaseResp getCourseIds = await DataSourceRequest().requestGetCourseIds(classCourseName.text);
-                      //     print(getCourseIds);
+                      print(getCourseIds);
                       //     print(getCourseIds.data["id"]);
                       SetClassParameter.classId = getCourseIds.data["id"];
-                      //     SetClassParameter.classCode = getCourseIds.data["class_code"];
+
+                      SetClassParameter.classCode = getCourseIds.data["class_code"];
                       BaseResp groundClass = await SetClass().requestGroundClass(SetClassParameter.classId);
+                      if (groundClass.code == 10000) {
+                        Toast.show("上架班级成功", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                      }
                       print(groundClass);
                     } else {
                       Toast.show("建课名称不见了？", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
@@ -428,40 +434,45 @@ class _SetClassPage extends State<SetClassPageRoute> {
                   })
             ],
           ),
+
           //动态获取建课内容
           Row(
-            children: <Widget>[
+            children: [
               onekeySetClass,
               Padding(padding: EdgeInsets.only(left: 100)),
-              Text(result ?? " "),
+              Text("${result ?? " "}"),
             ],
           ),
-        
+
+          //创建订单
           Row(
             children: <Widget>[
               RaisedButton(
-                child: Text("创建订单"),
-                  onPressed: (){
+                  child: Text("创建订单"),
+                  onPressed: () async {
+                    if (SetClassParameter.classId != null && SetClassParameter.classCode != null) {
+                      BaseResp createOrder = await SetClass().requestCreateOrder(SetClassParameter.classId, SetClassParameter.classCode);
+                      print(createOrder);
 
+                      setState(() {
+                        createOrderId = createOrder.data;
+                      });
+                      if (createOrder.code == 10000) {
+                        Toast.show("订单获取成功", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                      }
+                    }
+                  }),
+              Row(
+                children: [
+                  Padding(padding: EdgeInsets.only(left: 100)),
+                  Text("订单号为:${createOrderId ?? " "}"),
 
-                  }
-
-
-
-
-
-
-
-
+                ],
               )
-
-
-
-
-
             ],
+          ),
+          //刷新获取订单id
 
-          )
         ],
       ),
     );

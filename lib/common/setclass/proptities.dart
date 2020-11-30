@@ -18,6 +18,6 @@ class SetClassParameter {
   static int classId;
 
   //上架班级class_code
-  static int classCode;
+  static String classCode;
 
 }
