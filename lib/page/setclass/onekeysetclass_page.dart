@@ -63,8 +63,11 @@ class OnekeySetClass extends StatelessWidget {
                  //     print(groundClass);
                       if (groundClass.code == 10000) {
                         var result = "生成结果:"+"课时名称:"+classLessonName + ",建课名称:" + classCourseName;
-                      print(result);
+                     // print(result);
                         callBack(result);
+                        SetClassParameter.classId = getCourseIds.data["id"];
+                        SetClassParameter.classCode = getCourseIds.data["class_code"];
+
                       }
                     }
                   }

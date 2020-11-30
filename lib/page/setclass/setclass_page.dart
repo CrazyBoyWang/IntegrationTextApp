@@ -437,11 +437,17 @@ class _SetClassPage extends State<SetClassPageRoute> {
 
           //动态获取建课内容
           Row(
-            children: [
+            children: <Widget>[
               onekeySetClass,
-              Padding(padding: EdgeInsets.only(left: 100)),
-              Text("${result ?? " "}"),
+              Padding(padding: EdgeInsets.only(left: 50)),
+              Text("${result ?? " "}",style: TextStyle(fontSize: 20,color: Colors.red),),
             ],
+          ),
+
+          //分割线
+          Divider(
+            height: 20,
+            color: Colors.red,
           ),
 
           //创建订单
@@ -455,24 +461,22 @@ class _SetClassPage extends State<SetClassPageRoute> {
                       print(createOrder);
 
                       setState(() {
-                        createOrderId = createOrder.data;
+                        createOrderId = "订单号为:" + createOrder.data;
                       });
                       if (createOrder.code == 10000) {
-                        Toast.show("订单获取成功", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                        Toast.show("订单获取成功", context, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
                       }
                     }
                   }),
               Row(
-                children: [
-                  Padding(padding: EdgeInsets.only(left: 100)),
-                  Text("订单号为:${createOrderId ?? " "}"),
-
+                children: <Widget>[
+                  Padding(padding: EdgeInsets.only(left: 50)),
+                  Text("${createOrderId ?? " "}",style: TextStyle(fontSize:20,color: Colors.red,),),
                 ],
               )
             ],
           ),
           //刷新获取订单id
-
         ],
       ),
     );
