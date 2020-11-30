@@ -16,11 +16,17 @@ class OnekeySetClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Row(
+      child: Row
+        (
         children: <Widget>[
-
           RaisedButton(
-              child: Text("一键建课"),
+            textColor: Colors.red,
+              child: Column(
+               children: <Widget>[
+               IconButton(icon: Icon(Icons.brightness_high_outlined), onPressed: null),
+                 Text("一键建课"),
+               ],
+              ),
               onPressed: () async {
                 classLessonName = WordPair.random().toString();
                 //AR登录
@@ -28,7 +34,6 @@ class OnekeySetClass extends StatelessWidget {
                 Map userInfO = arLoginResult.data["userInfoVO"];
                 //获取token并存到配置文件中
                 SetClassParameter.token = userInfO["token"];
-
                 //添加课时
                 BaseResp addLesson = await SetClass().requestAddLesson(classLessonName);
 
@@ -57,7 +62,7 @@ class OnekeySetClass extends StatelessWidget {
                       BaseResp groundClass = await SetClass().requestGroundClass(getCourseIds.data["id"]);
                  //     print(groundClass);
                       if (groundClass.code == 10000) {
-                        var result = "课时名称:"+classLessonName + ",建课名称:" + classCourseName;
+                        var result = "生成结果:"+"课时名称:"+classLessonName + ",建课名称:" + classCourseName;
                       print(result);
                         callBack(result);
                       }

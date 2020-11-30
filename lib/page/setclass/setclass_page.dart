@@ -21,7 +21,7 @@ class _SetClassPage extends State<SetClassPageRoute> {
   FocusNode lessonName = new FocusNode();
   FocusNode courseName = new FocusNode();
   int resCode;
-  List a;
+  List classList;
   var result;
 
 //   List b = ["name", "asdasds", "code", 123];
@@ -234,7 +234,7 @@ class _SetClassPage extends State<SetClassPageRoute> {
                     courseName.unfocus();
                     if (classCourseName.text != "" && classLessonName.text != "") {
                       BaseResp courseNameType = await DataSourceRequest().requestGetCourseNameType();
-                      a = courseNameType.data;
+                      classList = courseNameType.data;
 
                       showModalBottomSheet(
                           context: context,
@@ -242,7 +242,7 @@ class _SetClassPage extends State<SetClassPageRoute> {
                             return Container(
                               height: 500,
                               child: ListView(
-                                children: a.map((e) {
+                                children: classList.map((e) {
                                   return ListTile(
                                     leading: Icon(Icons.api_rounded),
                                     title: Text(e["name"]),
@@ -428,10 +428,36 @@ class _SetClassPage extends State<SetClassPageRoute> {
                   })
             ],
           ),
+          //动态获取建课内容
           Row(
-            children: [
+            children: <Widget>[
               onekeySetClass,
+              Padding(padding: EdgeInsets.only(left: 100)),
               Text(result ?? " "),
+            ],
+          ),
+        
+          Row(
+            children: <Widget>[
+              RaisedButton(
+                child: Text("创建订单"),
+                  onPressed: (){
+
+
+                  }
+
+
+
+
+
+
+
+
+              )
+
+
+
+
 
             ],
 
