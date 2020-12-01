@@ -141,7 +141,7 @@ class BaseApiProvider {
     }
 
     if (result is BaseResp && result.code == ResponseCode.tokenIllegal) {
-      MyApp.logout();
+   //   MyApp.logout();
     }
 
     return result;

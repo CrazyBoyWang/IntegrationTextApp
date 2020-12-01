@@ -4,7 +4,6 @@ import 'backpage/echo_page.dart';
 import 'login/login_page.dart';
 import 'package:integrationTextApp/page/backpage/route_pagelist.dart';
 
-
 class RouterNames {
   static String root = "/";
   static String echo = "EchoPage";
@@ -28,8 +27,12 @@ class RouterNames {
 }
 
 // ignore: must_be_immutable
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => MyAppState();
+}
+
+class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,8 +57,6 @@ class MyApp extends StatelessWidget {
       // },
     );
   }
-
-  static void logout() {}
 }
 
 class MyHomePage extends StatefulWidget {
@@ -83,30 +84,9 @@ class _MyHomePageState extends State<MyHomePage> {
           //' mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             //  TextFieldTest(),
+
             //登录信息
             LoginPage(),
-
-            // FlatButton(
-            //   child: Text("进入新空间"),
-            //   textColor: Colors.blueAccent,
-            //   onPressed: () {
-            //     //导航到新路由
-            //     Navigator.push(context, MaterialPageRoute(builder: (context) {
-            //       bool maintainState = true;
-            //       bool fullscreenDialog = false;
-            //       return RouteList();
-            //     }));
-            //   },
-            // ),
-            // FlatButton(
-            //   onPressed: () {
-            //     Navigator.push(context, MaterialPageRoute(builder: (context) {
-            //       return ScaffoldRoute();
-            //     }));
-            //   },
-            //   child: Text("抽屉"),
-            //   color: Colors.blue,
-            // ),
           ],
         ),
       ),
