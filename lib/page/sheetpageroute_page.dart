@@ -13,36 +13,13 @@ class _ScaffoldRouteState extends State<SheetPageRoute> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("App Name"),
-        leading: Builder(builder: (context) {
-          return IconButton(
-            icon: Icon(Icons.accessible_forward_outlined, color: Colors.white),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          );
-        }),
-        actions: <Widget>[
-          RaisedButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text("back"),
-            color: Colors.yellow,
-          ),
-          IconButton(icon: Icon(Icons.share), onPressed: () {}),
-        ],
+
       ),
 
       body: Center(
         //创建Class信息
         child: SetClassPageRoute(),
-
       ),
-
-
-      //App Name界面按钮
-
-      // drawer: new Drawer(
-      //   child: ListView3(),
-      // ),
 
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
@@ -51,7 +28,9 @@ class _ScaffoldRouteState extends State<SheetPageRoute> {
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.home),
-              onPressed: () {},
+              onPressed: () {
+
+              },
             ),
             SizedBox(), //中间位置空出
             IconButton(

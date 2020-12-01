@@ -356,6 +356,7 @@ class _SetClassPage extends State<SetClassPageRoute> {
                       }
                     }
                   }),
+              //刷新获取订单id
               Row(
                 children: <Widget>[
                   Padding(padding: EdgeInsets.only(left: 50)),
@@ -364,7 +365,6 @@ class _SetClassPage extends State<SetClassPageRoute> {
               )
             ],
           ),
-          //刷新获取订单id
         ],
       ),
     );
