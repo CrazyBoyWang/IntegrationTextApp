@@ -28,6 +28,7 @@ class OnekeySetClass extends StatelessWidget {
                ],
               ),
               onPressed: () async {
+
                 classLessonName = WordPair.random().toString();
                 //AR登录
                 BaseResp arLoginResult = await SetClass().requestARLogin(SetClassParameter.arUserName, SetClassParameter.arPassWord);
