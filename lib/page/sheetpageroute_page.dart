@@ -30,7 +30,7 @@ class _ScaffoldRouteState extends State<SheetPageRoute> with SingleTickerProvide
       //   title: Text("App Name"),
       body: new TabBarView(controller: _tabController, children: pages),
       bottomNavigationBar: new Material(
-        color: Colors.blue,
+        color: Colors.lightGreen,
         child: new TabBar(
           controller: _tabController,
           tabs: <Tab>[

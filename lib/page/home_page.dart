@@ -27,12 +27,12 @@ class RouterNames {
 }
 
 // ignore: must_be_immutable
-class MyApp extends StatefulWidget {
+class StartApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => MyAppState();
 }
 
-class MyAppState extends State<MyApp> {
+class MyAppState extends State<StartApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
