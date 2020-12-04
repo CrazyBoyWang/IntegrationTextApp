@@ -24,6 +24,16 @@ dependencies:
   flutter:
     sdk: flutter
   dio: any
+  # add flutter_screenutil
+  flutter_screenutil: ^3.1.0
+
+  # 用来获取app的基本信息，比如的版本号、app的名字，包名；
+  package_info: 0.4.0+18
+
+  # 获取操作系统的信息 https://segmentfault.com/a/1190000014913010?utm_source=index-hottest
+  device_info: 0.4.1+5
+
+  connectivity: 0.4.8+6
 
 
 
