@@ -1,8 +1,5 @@
-import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:integrationTextApp/common/base-api-provider.dart';
 import 'package:integrationTextApp/common/setclass/proptities.dart';
 import 'package:integrationTextApp/view_modules/datasource/setclass_db_module.dart';
 import 'package:integrationTextApp/resource/base_resp.dart';

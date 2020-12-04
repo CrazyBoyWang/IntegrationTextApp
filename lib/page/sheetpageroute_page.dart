@@ -31,13 +31,63 @@ class _ScaffoldRouteState extends State<SheetPageRoute> with SingleTickerProvide
       //   title: Text("App Name"),
       body: new TabBarView(controller: _tabController, children: pages),
       bottomNavigationBar: new Material(
-        color: Colors.blueAccent,
+        color: Colors.indigo,
         child: new TabBar(
           controller: _tabController,
           tabs: <Tab>[
-            new Tab(text: "建课", icon: new Icon(Icons.home)),
-            new Tab(text: "发现", icon: new Icon(Icons.find_in_page)),
-            new Tab(text: "我的", icon: new Icon(Icons.person)),
+            new Tab(icon: new Icon(Icons.home),
+              child: Text("建课",
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  decoration: TextDecoration.none,
+                  fontSize: 12,
+                  color: Color(0xFF999999),
+              //    fontFamily: TextStyles.fzfontFamily,
+                ),
+              ),
+
+
+
+
+
+            ),
+            new Tab(icon: new Icon(Icons.find_in_page),
+              child: Text("发现",
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                decoration: TextDecoration.none,
+                fontSize: 12,
+                color: Color(0xFF999999),
+                //    fontFamily: TextStyles.fzfontFamily,
+              ),
+            ),
+
+
+
+
+
+
+
+            ),
+            new Tab(icon: new Icon(Icons.person),
+              child: Text("我的",
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  decoration: TextDecoration.none,
+                  fontSize: 12,
+                  color: Color(0xFF999999),
+                  //    fontFamily: TextStyles.fzfontFamily,
+                ),
+              ),
+
+
+
+
+
+
+
+
+            ),
           ],
           indicatorWeight: 0.1,
         ),
