@@ -1,45 +1,45 @@
+import 'dart:async';
+
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
-import 'autoscreen_page.dart';
-import 'backpage/RouterTestRoute.dart';
-import 'backpage/echo_page.dart';
-import 'login/login_page.dart';
-import 'package:integrationTextApp/page/backpage/route_pagelist.dart';
+import 'package:integrationTextApp/main_setting/setting_mixin.dart';
+import 'package:integrationTextApp/page/home_page.dart';
+import 'package:integrationTextApp/page/login/login_page.dart';
 
-class RouterNames {
-  static String root = "/";
-  static String echo = "EchoPage";
-  static String login = "RouterTestRoute";
+/// 启动应用
+void startApp() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initSystemInfo();
 
-  static Widget choosePage(String name) {
-    if (RouterNames.root == name) {
-      return MyHomePage(
-        title: "登录界面",
-      );
-    } else if (RouterNames.echo == name) {
-      bool isLogin = true;
-      if (!isLogin) return Container();
-      return EchoPage();
-    } else if (RouterNames.login == name) {
-      return RouterTestRoute();
-    } else {
-      return Container();
-    }
-  }
+  FlutterError.onError = (FlutterErrorDetails e) {
+    Zone.current.handleUncaughtError(e.exceptionAsString(), e.stack);
+  };
+  runZonedGuarded<Future<Null>>(() async {
+    runApp(MyApp());
+  }, (Object error, StackTrace stack) {
+    print(error);
+  });
 }
 
-// ignore: must_be_immutable
-class StartApp extends StatefulWidget {
+final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+final navigatorKey = GlobalKey<NavigatorState>();
+
+class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => MyAppState();
 }
 
-class MyAppState extends State<StartApp> {
+class MyAppState extends State<MyApp> {
+
   @override
   Widget build(BuildContext context) {
-   // ScreenUtil.init(context,);
+    // ScreenUtil.init(context,);
     return MaterialApp(
       title: 'Flutter Demo',
+      home: Scaffold(
+        body: MyHomePage(title: "Home",),
+      ),
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -51,6 +51,7 @@ class MyAppState extends State<StartApp> {
           return RouterNames.choosePage(settings.name);
         });
       },
+
       //注册路由表
       // routes: {
       //   "new page": (context) => Route(),
@@ -60,6 +61,11 @@ class MyAppState extends State<StartApp> {
       // },
     );
   }
+}
+
+/// 获取全局的context
+BuildContext getNavigatorContext() {
+  return navigatorKey.currentState.overlay.context;
 }
 
 class MyHomePage extends StatefulWidget {
@@ -89,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //  TextFieldTest(),
 
             //登录信息
-        //    AutoScreenTitle(),
+            //    AutoScreenTitle(),
             LoginPage(),
 
           ],
@@ -100,3 +106,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
