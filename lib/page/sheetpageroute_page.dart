@@ -21,7 +21,8 @@ class _ScaffoldRouteState extends State<SheetPageRoute> with SingleTickerProvide
   }
 
   int currentIndex = 0;
-  final pages = [ChildItemView("首页"), ChildItemView("发现"), ChildItemView("我的")];
+  //控制页面跳转信息
+  final pages = [SetClassPageRoute(), ChildItemView("发现"), ChildItemView("我的")];
 
   Widget buildBottomTabScaffold() {
     return new Scaffold(
@@ -30,11 +31,11 @@ class _ScaffoldRouteState extends State<SheetPageRoute> with SingleTickerProvide
       //   title: Text("App Name"),
       body: new TabBarView(controller: _tabController, children: pages),
       bottomNavigationBar: new Material(
-        color: Colors.lightGreen,
+        color: Colors.blueAccent,
         child: new TabBar(
           controller: _tabController,
           tabs: <Tab>[
-            new Tab(text: "首页", icon: new Icon(Icons.home)),
+            new Tab(text: "建课", icon: new Icon(Icons.home)),
             new Tab(text: "发现", icon: new Icon(Icons.find_in_page)),
             new Tab(text: "我的", icon: new Icon(Icons.person)),
           ],
@@ -86,16 +87,17 @@ class _ScaffoldRouteState extends State<SheetPageRoute> with SingleTickerProvide
 //子页面
 class ChildItemView extends StatefulWidget {
   String _title;
-
   ChildItemView(this._title);
+
 
   @override
   _ChildItemViewState createState() => _ChildItemViewState();
 }
 
 class _ChildItemViewState extends State<ChildItemView> {
+
   @override
   Widget build(BuildContext context) {
-    return Container(child: Center(child: SetClassPageRoute()),);
+    return Container(child: Center(child:Text("敬请期待")));
   }
 }

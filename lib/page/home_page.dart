@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
-import 'autoscreen_page.dart';
 import 'backpage/RouterTestRoute.dart';
 import 'backpage/echo_page.dart';
 import 'login/login_page.dart';
-import 'package:integrationTextApp/page/backpage/route_pagelist.dart';
 
 class RouterNames {
   static String root = "/";

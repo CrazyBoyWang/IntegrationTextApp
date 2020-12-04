@@ -36,7 +36,7 @@ class _SetClassPage extends State<SetClassPageRoute> {
       });
     };
     return Padding(
-      padding: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.only(top: 34),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
