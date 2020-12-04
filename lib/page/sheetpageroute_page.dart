@@ -46,10 +46,6 @@ class _ScaffoldRouteState extends State<SheetPageRoute> with SingleTickerProvide
                 ),
               ),
 
-
-
-
-
             ),
             new Tab(icon: new Icon(Icons.find_in_page),
               child: Text("发现",
@@ -62,12 +58,6 @@ class _ScaffoldRouteState extends State<SheetPageRoute> with SingleTickerProvide
               ),
             ),
 
-
-
-
-
-
-
             ),
             new Tab(icon: new Icon(Icons.person),
               child: Text("我的",
@@ -79,14 +69,6 @@ class _ScaffoldRouteState extends State<SheetPageRoute> with SingleTickerProvide
                   //    fontFamily: TextStyles.fzfontFamily,
                 ),
               ),
-
-
-
-
-
-
-
-
             ),
           ],
           indicatorWeight: 0.1,
