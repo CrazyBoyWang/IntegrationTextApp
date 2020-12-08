@@ -1,135 +1,72 @@
+//主页面底部tabbar
+//import 'package:app_ftr/pages/DyPage.dart';
 import 'package:flutter/material.dart';
-import 'setclass/setclass_page.dart';
+import 'package:flutter_screenutil/screenutil.dart';
+import 'package:integrationTextApp/page/setclass/setclass_page.dart';
 
+//动态组件
 class SheetPageRoute extends StatefulWidget {
+  SheetPageRoute({Key key}) : super(key: key);
+
   @override
-  _ScaffoldRouteState createState() => _ScaffoldRouteState();
+  _IndexPageState createState() => _IndexPageState();
 }
 
-class _ScaffoldRouteState extends State<SheetPageRoute> with SingleTickerProviderStateMixin {
-  TabController _tabController;
+class _IndexPageState extends State<SheetPageRoute> {
+  //初始化控制器
+  PageController _pageController = PageController();
+  int _currentIndex = 0; //底部tap高亮下标
 
-  @override
   void initState() {
     super.initState();
-    _tabController = new TabController(length: pages.length, vsync: this);
+    //监听控制器滑动变化,改变底部tap
+    _pageController.addListener(() {
+      setState(() {
+        _currentIndex = (_pageController.page).round();
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return buildBottomTabScaffold();
-  }
-
-  int currentIndex = 0;
-  //控制页面跳转信息
-  final pages = [SetClassPageRoute(), ChildItemView("发现"), ChildItemView("我的")];
-
-  Widget buildBottomTabScaffold() {
-    return new Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text("App Name"),
-      body: new TabBarView(controller: _tabController, children: pages),
-      bottomNavigationBar: new Material(
-        color: Colors.indigo,
-        child: new TabBar(
-          controller: _tabController,
-          tabs: <Tab>[
-            new Tab(icon: new Icon(Icons.home),
-              child: Text("建课",
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  decoration: TextDecoration.none,
-                  fontSize: 12,
-                  color: Color(0xFF999999),
-              //    fontFamily: TextStyles.fzfontFamily,
-                ),
-              ),
-
-            ),
-            new Tab(icon: new Icon(Icons.find_in_page),
-              child: Text("发现",
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                decoration: TextDecoration.none,
-                fontSize: 12,
-                color: Color(0xFF999999),
-                //    fontFamily: TextStyles.fzfontFamily,
-              ),
-            ),
-
-            ),
-            new Tab(icon: new Icon(Icons.person),
-              child: Text("我的",
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  decoration: TextDecoration.none,
-                  fontSize: 12,
-                  color: Color(0xFF999999),
-                  //    fontFamily: TextStyles.fzfontFamily,
-                ),
-              ),
-            ),
-          ],
-          indicatorWeight: 0.1,
-        ),
-      ),
+    ScreenUtil.init(context, allowFontScaling: false);
+    return Scaffold(
+      body: _currentPage(),
+      //底部导航Bar
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: (int index) {
+            setState(() {
+              _currentIndex = index;
+            });
+            //控制器跳转页面
+            _pageController.jumpToPage(index);
+          },
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
+          currentIndex: _currentIndex,
+          items: [BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('建课')),
+            BottomNavigationBarItem(icon: Icon(Icons.settings_system_daydream_rounded), title: Text('天气')),
+            BottomNavigationBarItem(icon: Icon(Icons.ramen_dining), title: Text('你猜')),
+            BottomNavigationBarItem(icon: Icon(Icons.person_rounded), title: Text('我的'))]),
     );
   }
 
-  /*切换页面*/
-  void _changePage(int index) {
-    /*如果点击的导航项不是当前项  切换 */
-    if (index != currentIndex) {
-      setState(() {
-        currentIndex = index;
-      });
-    }
-  }
-// body: Center(
-//   //创建Class信息
-//   child: SetClassPageRoute(),
-// ),
-//
-// bottomNavigationBar: BottomAppBar(
-//   color: Colors.white,
-//   shape: CircularNotchedRectangle(), // 底部导航栏打一个圆形的洞
-//   child: Row(
-//     children: <Widget>[
-//       IconButton(
-//         icon: Icon(Icons.home),
-//         onPressed: () {},
-//       ),
-//       SizedBox(), //中间位置空出
-//       IconButton(
-//         icon: Icon(Icons.business),
-//         onPressed: () {},
-//       ),
-//     ],
-//     mainAxisAlignment: MainAxisAlignment.spaceAround,
-//     //均分底部导航栏横向空间
-//   ),
-// ),
-// //挪移到中间位置
-// floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-// floatingActionButton: FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
-// );
-}
+  //底部对应 页面
+  Widget _currentPage() {
+    List _pages = [
+      SetClassPageRoute(), //下面可自定义页面组件
+      Text('图书'),
+      Text('个人'),
+      Text('emmmm'),
+    ];
 
-//子页面
-class ChildItemView extends StatefulWidget {
-  String _title;
-  ChildItemView(this._title);
-
-
-  @override
-  _ChildItemViewState createState() => _ChildItemViewState();
-}
-
-class _ChildItemViewState extends State<ChildItemView> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(child: Center(child:Text("敬请期待")));
+    return PageView.builder(
+        // physics: NeverScrollableScrollPhysics(), //禁用左右滑动
+        itemCount: _pages.length,
+        controller: _pageController, //控制器
+        itemBuilder: (context, index) => _pages[index] //构建一个页面实例
+        );
   }
 }
