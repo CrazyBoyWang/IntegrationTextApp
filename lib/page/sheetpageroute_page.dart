@@ -14,6 +14,7 @@ class SheetPageRoute extends StatefulWidget {
 
 class _IndexPageState extends State<SheetPageRoute> {
   //初始化控制器
+
   PageController _pageController = PageController();
   int _currentIndex = 0; //底部tap高亮下标
 
@@ -34,6 +35,7 @@ class _IndexPageState extends State<SheetPageRoute> {
       body: _currentPage(),
       //底部导航Bar
       bottomNavigationBar: BottomNavigationBar(
+
           onTap: (int index) {
             setState(() {
               _currentIndex = index;
@@ -46,7 +48,8 @@ class _IndexPageState extends State<SheetPageRoute> {
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey,
           currentIndex: _currentIndex,
-          items: [BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('建课')),
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('建课')),
             BottomNavigationBarItem(icon: Icon(Icons.settings_system_daydream_rounded), title: Text('天气')),
             BottomNavigationBarItem(icon: Icon(Icons.ramen_dining), title: Text('你猜')),
             BottomNavigationBarItem(icon: Icon(Icons.person_rounded), title: Text('我的'))]),
@@ -66,6 +69,7 @@ class _IndexPageState extends State<SheetPageRoute> {
         // physics: NeverScrollableScrollPhysics(), //禁用左右滑动
         itemCount: _pages.length,
         controller: _pageController, //控制器
+       // physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => _pages[index] //构建一个页面实例
         );
   }
