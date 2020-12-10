@@ -26,6 +26,7 @@ dependencies:
   dio: any
   # add flutter_screenutil
   flutter_screenutil: ^3.1.0
+  http: ^0.12.0+1
 
   # 用来获取app的基本信息，比如的版本号、app的名字，包名；
   package_info: 0.4.0+18
