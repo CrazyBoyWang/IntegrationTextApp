@@ -35,6 +35,7 @@ class _FocusTestRouteState extends State<LoginPage> {
             ),
             //用户名
             child: TextField(
+              key: Key('textFiled'),
               controller: controllerUserName,
               textInputAction: TextInputAction.next,
               autofocus: true,

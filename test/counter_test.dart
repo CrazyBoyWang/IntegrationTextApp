@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integrationTextApp/main_setting/main_mixin.dart';
-import 'package:integrationTextApp/page/backpage/ListView_page.dart';
-import 'package:integrationTextApp/page/backpage/ToDoList.dart';
-import 'package:integrationTextApp/page/backpage/colorFul_page.dart';
 import 'package:integrationTextApp/page/login/login_page.dart';
 
 void main() {
@@ -36,21 +32,27 @@ void main() {
    */
   testWidgets('登录的测试', (WidgetTester tester) async {
 //    await tester.pump();
-    Widget  body1  = LoginPage();
-    List widgets = [body1];
+//    Widget  body1  = LoginPage();
+    //   List widgets = [body1];
+    //   for(Widget body in widgets) {
+    MaterialApp app = MaterialApp(
+      home: Scaffold(
+        body: LoginPage(),
+      ),
+    );
+    print("111");
+    await tester.pumpWidget(app);
 
-    for(Widget body in widgets) {
-      MaterialApp app = MaterialApp(
-        home: Scaffold(
-          body: body,
-        ),
-      );
-      print("111");
-      await tester.pumpWidget(app);
-    }
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byKey(new Key('textFiled')), 'ddddddd');
 
-    // await tester.tap(find.text('登录'));
-   // expect(find.text("登录"), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.person));
+    await tester.tap(find.byIcon(Icons.lock));
+    tester.firstElement(find.text('用户名'));
+    expect(find.text('用户名'), findsOneWidget);
+
+    //   await tester.tap(find.text('登录'));
+    //   expect(find.text("登录"), findsOneWidget);
 
     //   expect(titleFinder, findsOneWidget);
 
@@ -60,6 +62,5 @@ void main() {
     //   await tester.pump();
 
 //    await tester.tap(find.byKey(a));
-  } , variant: TargetPlatformVariant.only(TargetPlatform.iOS));
+  }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
 }
-
